@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Brick Breaker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body { height: 100%; width: 100%; margin: 0; background: #111; }
+    #unity-canvas { width: 100vw; height: 100vh; display: block; background: #222; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="-1"></canvas>
+  <script>
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/brickbreaker.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/brickbreaker.data",
+      frameworkUrl: buildUrl + "/brickbreaker.framework.js",
+      codeUrl: buildUrl + "/brickbreaker.wasm",
+      streamingAssetsUrl: buildUrl + "/StreamingAssets",
+      companyName: "Highscore Gaming",
+      productName: "Brick Breaker",
+      productVersion: "0.1"
+    };
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function() {
+      createUnityInstance(document.getElementById("unity-canvas"), config, function(progress) {
+        // Optional: update a loading bar here if you want
+      }).catch(function(message) {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
