@@ -2,18 +2,20 @@ name: Deploy to Hetzner
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH pull on Hetzner
-        uses: appleboy/ssh-action@v1.0.3
+      - uses: actions/checkout@v4
+
+      - name: SCP to Hetzner
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: 178.105.242.247
           username: root
           key: ${{ secrets.HETZNER_SSH_KEY }}
-          script: |
-            cd /opt/hsc/games/webgl
-            git pull
+          source: "."
+          target: "/opt/hsc/games/webgl/"
+          strip_components: 0
