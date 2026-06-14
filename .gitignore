@@ -1,0 +1,11 @@
+# Unity crash logs
+*.log
+*.crashlytics
+
+# Archives
+*.tar.gz
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
